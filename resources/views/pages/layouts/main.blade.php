@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Bookstore | 2022</title>
+  <title>Goomo | Solusi Sewa Sepeda Motor Jaman Sekarang | 2022</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="{{ asset('/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="{{ asset('ui/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('ui/css/utilities.css') }}">
+  <link rel="icon" type="image/svg" href="{{ asset('ui/img/logo/icon.svg') }}">
 </head>
 <body class="bg-light">
   
