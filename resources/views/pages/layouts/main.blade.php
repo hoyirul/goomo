@@ -20,7 +20,7 @@
 
     <div class="p-3"></div>
     <footer>
-      <p class="text-center fs-normal">&copy; 2022 All Rights Reserved | Bookstore 2022</p>
+      <p class="text-center fs-normal">&copy; 2022 All Rights Reserved | Goomo 2022</p>
     </footer>
   </div>
 

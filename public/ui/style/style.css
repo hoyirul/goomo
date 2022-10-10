@@ -1,26 +1,26 @@
 @font-face {
-    font-family: 'Poppins-bold';
-    src: url('./../font/Poppins-Bold.ttf');
+    font-family: 'Montserrat-bold';
+    src: url('./../font/Montserrat-Bold.ttf');
 }
 
 @font-face {
-    font-family: 'Poppins-regular';
-    src: url('./../font/Poppins-Regular.ttf');
+    font-family: 'Montserrat-regular';
+    src: url('./../font/Montserrat-Regular.ttf');
 }
 
 @font-face {
-    font-family: 'Poppins-semibold';
-    src: url('./../font/Poppins-SemiBold.ttf');
+    font-family: 'Montserrat-semibold';
+    src: url('./../font/Montserrat-SemiBold.ttf');
 }
 
 @font-face {
-    font-family: 'Poppins-medium';
-    src: url('./../font/Poppins-Medium.ttf');
+    font-family: 'Montserrat-medium';
+    src: url('./../font/Montserrat-Medium.ttf');
 }
 
 :root{
-    --primary-color: #54a591;
-    --secondary-color: #48d1af;
+    --primary-color: #5F7BE8;
+    --secondary-color: #2A2E80;
     --light: #fff;
     --transparent: transparent;
     --dark: #242424;
@@ -32,14 +32,14 @@
     --bg-m-left-illustrator: url('./../svg/illustrator/m-left.svg');
     --bg-right-illustrator-mitra: url('./../svg/banner/banner-mitra.svg');
     /* FONT */
-    --regular: 'Poppins-regular';
-    --medium: 'Poppins-medium';
-    --semibold: 'Poppins-semibold';
-    --bold: 'Poppins-bold';
+    --regular: 'Montserrat-regular';
+    --medium: 'Montserrat-medium';
+    --semibold: 'Montserrat-semibold';
+    --bold: 'Montserrat-bold';
 }
 
 body{
-    font-family: 'Poppins-regular' !important;
+    font-family: 'Montserrat-regular' !important;
     font-size: 12px;
 }
 
@@ -413,7 +413,7 @@ li a{
     padding: 5px 20px 5px 20px !important;
     /* width: 120px !important; */
     /* height: 40px !important; */
-    font-family: 'Poppins-medium';
+    font-family: 'Montserrat-medium';
 }
 
 .btn-width-same{
@@ -717,7 +717,7 @@ li a{
         padding: 5px 20px 5px 20px !important;
         /* width: 120px !important; */
         /* height: 40px !important; */
-        font-family: 'Poppins-medium';
+        font-family: 'Montserrat-medium';
     }
     
     .btn-width-same{
@@ -1041,7 +1041,7 @@ li a{
         padding: 5px 20px 5px 20px !important;
         /* width: 120px !important; */
         /* height: 40px !important; */
-        font-family: 'Poppins-medium';
+        font-family: 'Montserrat-medium';
     }
     
     .btn-width-same{

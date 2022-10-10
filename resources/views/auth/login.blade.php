@@ -9,9 +9,11 @@
           <div class="row justify-content-center">
             <div class="col-lg-5">
               <div class="p-3"></div>
-              <div class="card shadow-sm border-0 rounded-lg mt-5 rad-20">
+              <div class="card border-0 rounded-lg mt-5 rad-20">
                 <div class="card-body m-3">
-                  <h3 class="text-center font-weight-light my-4 mb-5 color-primary font-semibold" data-id="title">BookStore*</h3>
+                  <center>
+                    <img src="{{ asset('ui/img/logo/logo.svg') }}" class="text-center mb-3" alt="">
+                  </center>
                   <form action="{{ route('login') }}" method="POST">
                     @csrf
                     <div class="form-floating mb-3 fs-normal">

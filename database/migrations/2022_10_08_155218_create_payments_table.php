@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_operator_id')->constrained();
             $table->string('txid')->nullable();
-            $table->foreign('txid')->references('txid')->on('transaction');
+            $table->foreign('txid')->references('txid')->on('transactions');
             $table->string('invoice', 20);
             $table->text('evidence_of_transafer')->nullable();
             $table->dateTime('paid_date')->nullable();

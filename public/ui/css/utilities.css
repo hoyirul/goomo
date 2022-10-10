@@ -1,39 +1,44 @@
 @font-face {
-    font-family: 'Poppins-bold';
-    src: url('./../font/Poppins-Bold.ttf');
+    font-family: 'Montserrat-bold';
+    src: url('./../font/Montserrat-Bold.ttf');
 }
 
 @font-face {
-    font-family: 'Poppins-regular';
-    src: url('./../font/Poppins-Regular.ttf');
+    font-family: 'Montserrat-regular';
+    src: url('./../font/Montserrat-Regular.ttf');
 }
 
 @font-face {
-    font-family: 'Poppins-semibold';
-    src: url('./../font/Poppins-SemiBold.ttf');
+    font-family: 'Montserrat-semibold';
+    src: url('./../font/Montserrat-SemiBold.ttf');
 }
 
 @font-face {
-    font-family: 'Poppins-medium';
-    src: url('./../font/Poppins-Medium.ttf');
+    font-family: 'Montserrat-medium';
+    src: url('./../font/Montserrat-Medium.ttf');
 }
 
 :root{
-    --primary-color: #54a591;
-    --secondary-color: #48d1af;
-    --light: #f2f8f7;
+    --primary-color: #5F7BE8;
+    --secondary-color: #2A2E80;
+    --light: #F5F5F5;
     --transparent: transparent;
-    --dark: #242424;
-    --subtitle-color: #707070;
+    --dark: #1E1E1E;
+    --subtitle-color: #666A7B;
+    --middark: #A3AAC4;
     /* FONT */
-    --regular: 'Poppins-regular';
-    --medium: 'Poppins-medium';
-    --semibold: 'Poppins-semibold';
-    --bold: 'Poppins-bold';
+    --regular: 'Montserrat-regular';
+    --medium: 'Montserrat-medium';
+    --semibold: 'Montserrat-semibold';
+    --bold: 'Montserrat-bold';
 }
 
 body{
     font-family: var(--regular);
+}
+
+.border-middark {
+    border: 1px solid var(--middark);
 }
 
 /* background */

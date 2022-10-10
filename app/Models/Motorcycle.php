@@ -9,7 +9,7 @@ class Motorcycle extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['motorcycle_type_id', 'motorcycle_brand_id', 'motorcycle_name', 'product_year', 'police_number', 'motorcycle_photo', 'vehicle_registration', 'description'];
+    protected $fillable = ['user_owner_id', 'motorcycle_type_id', 'motorcycle_brand_id', 'motorcycle_name', 'product_year', 'police_number', 'motorcycle_photo', 'vehicle_registration', 'description'];
 
     public function motorcycletype(){
         return $this->belongsTo(MotorcycleType::class);

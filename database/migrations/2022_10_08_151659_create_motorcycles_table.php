@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('motorcycles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('')->constrained();
+            $table->foreignId('user_owner_id')->constrained();
             $table->foreignId('motorcycle_type_id')->constrained();
             $table->foreignId('motorcycle_brand_id')->constrained();
             $table->string('motorcycle_name', 50);
