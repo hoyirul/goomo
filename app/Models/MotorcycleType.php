@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class MotorcycleType extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['type_name'];
+
+    public function motorcycle(){
+        return $this->hasMany(Motorcycle::class);
+    }
 }

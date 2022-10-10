@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class MotorcycleBrand extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['brand_name'];
+
+    public function motorcycle(){
+        return $this->hasMany(Motorcycle::class);
+    }
 }

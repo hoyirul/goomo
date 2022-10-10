@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item{
+    padding: 10px 20px !important;
+}
+
+.cover-image{
+    height: 125px !important; 
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.container-fluid{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
