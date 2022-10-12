@@ -12,17 +12,17 @@
       </ul>
       <div class="d-flex">
         @auth
-          @if (auth()->user()->role == 'admin')
-            <a href="/u/dashboard" class="rad-8 btn btn-dark btn-sm fs-normal font-regular p-2 px-5 float-end"><span class="fa fa-cogs me-1"></span> Dashboard</a>   
+          @if (Auth::user()->role_id == 1 && Auth::user()->role_id == 2)
+            <a href="/operator/dashboard" class="rad-8 btn btn-dark btn-sm fs-normal font-regular p-2 px-5 float-end"><span class="fa fa-cogs me-1"></span> Dashboard</a>   
           @else
-            <a href="/user/dashboard" class="rad-8 btn btn-primary btn-sm fs-normal font-regular p-2 px-5 float-end me-2"><span class="fa fa-cogs me-1"></span> Dashboard</a>            
-            <a href="/cart/{{ auth()->user()->id }}/show" class="rad-8 btn btn-dark btn-sm position-relative fs-normal font-regular p-2 px-5 float-end me-2"><span class="fa fa-shopping-bag me-1"></span> Carts
+            <a href="/v2/dashboard" class="rad-8 btn btn-primary btn-sm fs-normal font-regular p-2 px-5 float-end me-2"><span class="fa fa-cogs me-1"></span> Dashboard</a>            
+            <a href="/cart/{{ Auth::user()->id }}/show" class="rad-8 btn btn-dark btn-sm position-relative fs-normal font-regular p-2 px-5 float-end me-2"><span class="fa fa-credit-card me-1"></span> Payments
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                @if (App\Http\Controllers\User\CartController::cart_count(auth()->user()->id) > 9)
+                {{-- @if (App\Http\Controllers\User\CartController::cart_count(auth()->user()->id) > 9)
                   9+
                 @else
                   {{ App\Http\Controllers\User\CartController::cart_count(auth()->user()->id) }}
-                @endif
+                @endif --}}
                 <span class="visually-hidden">Count Items</span>
               </span>
             </a>

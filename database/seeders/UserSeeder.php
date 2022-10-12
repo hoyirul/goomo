@@ -18,23 +18,23 @@ class UserSeeder extends Seeder
     {
         $data = [
             [
-                'email' => 'superadmin@melijo.id',
+                'email' => 'superadmin@goomo.com',
                 'password' => Hash::make('superadmin'),
                 'role_id' => 1
             ],
             [
-                'email' => 'admin@melijo.id',
+                'email' => 'admin@goomo.com',
                 'password' => Hash::make('admin'),
                 'role_id' => 2
             ],
             [
-                'email' => 'customer@melijo.id',
+                'email' => 'customer@goomo.com',
                 'password' => Hash::make('customer'),
                 'role_id' => 3
             ],
             [
-                'email' => 'seller@melijo.id',
-                'password' => Hash::make('seller'),
+                'email' => 'owner@goomo.com',
+                'password' => Hash::make('owner'),
                 'role_id' => 4
             ],
         ];

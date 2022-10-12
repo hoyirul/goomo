@@ -10,18 +10,24 @@
               <img src="{{ asset('storage/'.auth()->user()->photo_profile) }}" alt="" class="w-100">
             @endif
           </div>
-          <span class="text-center fs-small">Admin@gmail.com</span>
+          <span class="text-center fs-small">{{ Auth::user()->email }}</span>
         </div>
         
         <div class="top-8">
           <div class="mb-3">
-            <a href="/user/dashboard" class="text-decoration-none px-3 fs-normal text-dark"><span class="fa fa-cogs me-1"></span> Dashboard</a>
+            <a href="/v2/dashboard" class="text-decoration-none px-3 fs-normal text-dark"><span class="fa fa-cogs me-1"></span> Dashboard</a>
           </div>
           <div class="mb-3">
-            <a href="/user/transaction" class="text-decoration-none px-3 fs-normal text-dark"><span class="fa fa-book me-1"></span> Transactions</a>
+            <a href="/v2/address" class="text-decoration-none px-3 fs-normal text-dark"><span class="fa fa-map me-2"></span> Addresses</a>
           </div>
           <div class="mb-3">
-            <a href="/user/change_password" class="text-decoration-none px-3 fs-normal text-dark"><span class="fa fa-lock me-1"></span> Change Password</a>
+            <a href="/v2/motorcycle" class="text-decoration-none px-3 fs-normal text-dark"><span class="fa fa-motorcycle me-1"></span> Motorcycles</a>
+          </div>
+          <div class="mb-3">
+            <a href="/v2/transaction" class="text-decoration-none px-3 fs-normal text-dark"><span class="fa fa-calendar me-2"></span> Transactions</a>
+          </div>
+          <div class="mb-3">
+            <a href="/v2/change_password" class="text-decoration-none px-3 fs-normal text-dark"><span class="fa fa-lock me-2"></span> Change Password</a>
           </div>
           <div class="mb-3">
             <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal" class="text-decoration-none px-3 fs-normal text-dark"><span class="fa fa-plane me-1"></span> Logout</a>

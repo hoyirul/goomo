@@ -3,6 +3,11 @@
 use App\Http\Controllers\Operator\MotorcycleTypeController;
 use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
 use App\Models\MotorcycleType;
+use App\Http\Controllers\Pages\AddressController as AddressControllerPages;
+use App\Http\Controllers\Pages\DashboardController as DashboardControllerPages;
+use App\Http\Controllers\Operators\DashboardController as DashboardControllerOperators;
+// use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
+use App\Http\Controllers\Pages\MotorcycleController as MotorcycleControllerPages;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,24 +22,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/', [HomeControllerPages::class, 'index']);
 
 Auth::routes();
-
 // Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware(['auth', 'isOperators'])->group(function(){
-    Route::prefix('/admin')->group(function(){
-        
+Route::middleware(['auth', 'isOperator'])->group(function(){
+    Route::prefix('operator')->group(function(){
+        Route::controller(DashboardControllerOperators::class)->group(function() {
+            Route::get('/dashboard', 'index');
+        });
+        // Route::controller(Dasb)  
         Route::resource('motorcycletype', MotorcycleTypeController::class);
  
     });
 });
 
-Route::get('/book/{id}/show', [UserBookController::class, 'show']);
-    
-Route::get('/cart/{id}/show', [UserCartController::class, 'index']);
-Route::post('/cart/{id}/add', [UserCartController::class, 'store']);
-Route::get('/cart/{id}/edit', [UserCartController::class, 'edit']);
-Route::put('/cart/{id}', [UserCartController::class, 'update']);
-Route::delete('/cart/{id}', [UserCartController::class, 'destroy']);
+Route::middleware('auth')->group(function() {
+    Route::prefix('/v2')->group(function() {
+        Route::controller(DashboardControllerPages::class)->group(function() {
+            Route::get('/dashboard', 'index');
+        });
+
+        Route::middleware(['isOwner'])->group(function() {
+            Route::resource('/address', AddressControllerPages::class);
+            Route::resource('/motorcycle', MotorcycleControllerPages::class);
+        });
+    });
+});

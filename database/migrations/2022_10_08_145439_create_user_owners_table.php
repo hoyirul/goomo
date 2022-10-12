@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('name', 50);
+            $table->enum('gender', ['male', 'female', 'hidden'])->default('hidden');
             $table->string('phone', 16)->nullable();
             $table->text('identity_photo')->nullable();
             $table->text('driver_license')->nullable();

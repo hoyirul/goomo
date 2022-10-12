@@ -31,15 +31,21 @@ class LoginController extends Controller
     public function redirectTo() {
         $role = Auth::user()->role_id; 
         switch ($role) {
-          case 2:
-            return '/admin/motorcycletype';
-            break;
-          case 3:
-            return '/';
-            break;
-          default:
-            return '/'; 
-          break;
+            case 1:
+                return '/operator/dashboard';
+                break;
+            case 2:
+                return '/operator/dashboard';
+                break;
+            case 3:
+                return '/v2/dashboard';
+                break;
+            case 4:
+                return '/v2/dashboard';
+                break;
+            default:
+                return '/u/add_profile'; 
+                break;
         }
     }
 
