@@ -6,24 +6,19 @@
     <div class="sidebar-brand-icon rotate-n-15 px-1">
       <i class="fas fa-book"></i>
     </div><br>
-    <div class="sidebar-brand-text">BOOKSTORE</div>
+    <div class="sidebar-brand-text">Goomo</div>
   </a>
 
   <div class="profile text-center mb-3">
-    @if (Auth::user()->photo_profile == null)
-      <img class="img-profile rounded-circle w-25" src="{{ asset('/img/profile.png') }}">
-    @else
-      <img class="img-profile rounded-circle w-25" src="{{ asset('storage/'.Auth::user()->photo_profile) }}">
-    @endif
     <p class="text-white fs-normal">
-      {{ auth()->user()->email }} <br>
-      <span class="fs-small">{{ auth()->user()->role }} Bookstore</span>
+      
+      <span class="fs-small"> Goomo</span>
     </p>
   </div>
 
   <!-- Nav Item - Dashboard -->
 
-  @if (Auth::user()->role == 'admin')
+  @if (Auth::user()->role_id == 2)
     <li class="nav-item active border-top border-bottom">  
       <a class="nav-link px-5" href="/u/dashboard">
         <i class="fas fa-fw fa-home"></i>

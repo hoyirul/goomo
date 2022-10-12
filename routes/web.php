@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\Operator\MotorcycleTypeController;
+use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
+use App\Models\MotorcycleType;
 use App\Http\Controllers\Pages\AddressController as AddressControllerPages;
 use App\Http\Controllers\Pages\DashboardController as DashboardControllerPages;
-use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
+use App\Http\Controllers\Operators\DashboardController as DashboardControllerOperators;
+// use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
 use App\Http\Controllers\Pages\MotorcycleController as MotorcycleControllerPages;
 use App\Http\Controllers\Pages\SettingController as SettingControllerPages;
 use Illuminate\Support\Facades\Auth;
@@ -22,8 +26,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeControllerPages::class, 'index']);
 
 Auth::routes();
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth', 'isOperator'])->group(function(){
+    Route::prefix('operator')->group(function(){
+        Route::controller(DashboardControllerOperators::class)->group(function() {
+            Route::get('/dashboard', 'index');
+        });
+        // Route::controller(Dasb)  
+        Route::resource('motorcycletype', MotorcycleTypeController::class);
+ 
+    });
+});
 
 Route::middleware('auth')->group(function() {
     Route::prefix('/v2')->group(function() {

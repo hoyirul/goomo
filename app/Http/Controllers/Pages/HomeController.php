@@ -14,10 +14,15 @@ class HomeController extends Controller
 {
     public function index(){
         $title = 'Motorcycles';
-        $books = [];
+        $tables = [];
         $genres = [];
+<<<<<<< HEAD
         return view('pages.home.index', compact([
             'books', 'genres', 'title'
+=======
+        return view('pages.motorcycles.index', compact([
+            'tables', 'genres', 'title'
+>>>>>>> c47d67751e46b8b5a70020c7e5854d6f83c7feee
         ]));
     }
 }

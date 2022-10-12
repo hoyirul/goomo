@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="Bayu Fajariyanto">
   
-  <title>BOOKSTORE 2022 | {{ auth()->user()->role }}</title>
+  <title>BOOKSTORE 2022 | </title>
 
   
   <!-- Custom fonts for this template-->
@@ -28,7 +28,7 @@
   <div id="wrapper">
 
     <!-- sidebar -->
-    @include('admin.partials.sidebar')
+    @include('operators.partials.sidebar')
     <!-- sidebar -->
 
     <!-- Content Wrapper -->
@@ -38,7 +38,7 @@
       <div id="content" class="bg-light color-dark">
         
         <!-- top-navbar -->
-        @include('admin.partials.top-navbar')
+        @include('operators.partials.top-navbar')
         <!-- top-navbar -->
 
         @yield('content')
@@ -47,7 +47,7 @@
       <!-- End of Main Content -->
       
       <!-- footer -->
-      @include('admin.partials.footer')
+      @include('operators.partials.footer')
       <!-- footer -->
       
 
@@ -64,7 +64,7 @@
   <!-- Scroll to Top Button-->
   
   <!-- Modal-->
-  @include('admin.partials.logout')
+  @include('operators.partials.logout')
   <!-- Modal-->
   
 
