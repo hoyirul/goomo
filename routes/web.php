@@ -4,6 +4,7 @@ use App\Http\Controllers\Pages\AddressController as AddressControllerPages;
 use App\Http\Controllers\Pages\DashboardController as DashboardControllerPages;
 use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
 use App\Http\Controllers\Pages\MotorcycleController as MotorcycleControllerPages;
+use App\Http\Controllers\Pages\SettingController as SettingControllerPages;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,10 @@ Route::middleware('auth')->group(function() {
     Route::prefix('/v2')->group(function() {
         Route::controller(DashboardControllerPages::class)->group(function() {
             Route::get('/dashboard', 'index');
+        });
+        
+        Route::controller(SettingControllerPages::class)->group(function() {
+            Route::get('/change_password', 'change_password');
         });
 
         Route::middleware(['isOwner'])->group(function() {

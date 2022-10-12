@@ -16,7 +16,7 @@ class HomeController extends Controller
         $title = 'Motorcycles';
         $books = [];
         $genres = [];
-        return view('pages.motorcycles.index', compact([
+        return view('pages.home.index', compact([
             'books', 'genres', 'title'
         ]));
     }

@@ -13,7 +13,7 @@
 </head>
 <body class="bg-light">
   
-  <div class="container px-12 mt-3">
+  <div class="container px-8 mt-3">
     <div class="p-3"></div>
     @include('pages.partials.navbar')
 
