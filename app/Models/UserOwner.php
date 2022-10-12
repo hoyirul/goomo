@@ -9,7 +9,7 @@ class UserOwner extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'name', 'phone', 'identity_photo', 'driver_license', 'selfie_photo'];
+    protected $fillable = ['user_id', 'name', 'gender', 'phone', 'identity_photo', 'driver_license', 'selfie_photo'];
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');

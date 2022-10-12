@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Pages\AddressController as AddressControllerPages;
+use App\Http\Controllers\Pages\DashboardController as DashboardControllerPages;
 use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
+use App\Http\Controllers\Pages\MotorcycleController as MotorcycleControllerPages;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +23,16 @@ Route::get('/', [HomeControllerPages::class, 'index']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware('auth')->group(function() {
+    Route::prefix('/v2')->group(function() {
+        Route::controller(DashboardControllerPages::class)->group(function() {
+            Route::get('/dashboard', 'index');
+        });
+
+        Route::middleware(['isOwner'])->group(function() {
+            Route::resource('/address', AddressControllerPages::class);
+            Route::resource('/motorcycle', MotorcycleControllerPages::class);
+        });
+    });
+});
