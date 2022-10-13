@@ -28,28 +28,30 @@
         <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th class="text-center">Owner ID</th>
-              <th class="text-center">Motorcycle Type ID</th>
-              <th class="text-center">Motorcycle Brand ID</th>
-              <th class="text-center">Motocycle Name</th>
-              <th class="text-center">Police Number</th>
+              <th class="text-center">ID</th>
+              <th class="text-center">User ID</th>
+              <th class="text-center">Motorcycle ID</th>
+              <th class="text-center">Start Date</th>
+              <th class="text-center">End Date</th>
+              <th class="text-center">Status</th>
               <th class="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
             @foreach($tables as $row)
             <tr>
-              <td class="text-center">{{ $row->user_owner_id }}</td>
-              <td class="text-center">{{ $row->motorcycle_type_id }}</td>
-              <td class="text-center">{{ $row->motorcycle_brand_id }}</td>
-              <td class="text-center">{{ $row->motorcycle_name }}</td>
-              <td class="text-center">{{ $row->police_number }}</td>
+              <td class="text-center">{{ $row->txid }}</td>
+              <td class="text-center">{{ $row->user_customer_id }}</td>
+              <td class="text-center">{{ $row->motorcycle_id }}</td>
+              <td class="text-center">{{ $row->start_at }}</td>
+              <td class="text-center">{{ $row->end_at }}</td>
+              <td class="text-center">{{ $row->status }}</td>
               <td class="text-center">
-                <form action="/u/author/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
+                <form action="/operator/transaction/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
                   @csrf
                   @method('DELETE')
 
-                  <a href="/u/author/{{ $row->id }}/edit" data-id="authorEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
+                  <a href="/operator/transaction/{{ $row->id }}/edit" data-id="authorEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
                     <span class="fa fa-fw fa-syringe mx-1"></span>
                     Edit
                   </a>

@@ -12,6 +12,8 @@ use App\Http\Controllers\Operator\CustomerController as CustomerControllerOperat
 use App\Http\Controllers\Operator\MotorcycleController as MotorcycleControllerOperators;
 use App\Http\Controllers\Operator\MotorcycleBrandsController as MotorcycleBrandsControllerOperators;
 use App\Http\Controllers\Operator\MotorcycleTypeController as MotorcycleTypeControllerOperators;
+use App\Http\Controllers\Operator\TransactionController as TransactionControllerOperators;
+use App\Http\Controllers\Operator\PaymentController as PaymentControllerOperators;
 // use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
 use App\Http\Controllers\Pages\MotorcycleController as MotorcycleControllerPages;
 use App\Http\Controllers\Pages\SettingController as SettingControllerPages;
@@ -56,6 +58,12 @@ Route::middleware(['auth', 'isOperator'])->group(function(){
         });
         Route::controller(MotorcycleTypeControllerOperators::class)->group(function() {
             Route::get('/motorcycle-type', 'index');
+        });
+        Route::controller(TransactionControllerOperators::class)->group(function() {
+            Route::get('/transaction', 'index');
+        });
+        Route::controller(PaymentControllerOperators::class)->group(function() {
+            Route::get('/payment', 'index');
         });
         // Route::controller(Dasb)  
         Route::resource('motorcycletype', MotorcycleTypeController::class);

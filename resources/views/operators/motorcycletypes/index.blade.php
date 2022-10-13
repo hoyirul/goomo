@@ -39,11 +39,11 @@
               <td class="text-center">{{ $row->id }}</td>
               <td>{{ $row->type_name }}</td>
               <td class="text-center">
-                <form action="/u/author/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
+                <form action="/operator/motorcycle/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
                   @csrf
                   @method('DELETE')
 
-                  <a href="/u/author/{{ $row->id }}/edit" data-id="authorEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
+                  <a href="/operator/motorcycle/{{ $row->id }}/edit" data-id="authorEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
                     <span class="fa fa-fw fa-syringe mx-1"></span>
                     Edit
                   </a>
