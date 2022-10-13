@@ -26,7 +26,7 @@
         </div>
         @endif
 
-        <form action="/user/change_password" method="post" enctype="multipart/form-data">
+        <form action="/v2/update_password" method="post" enctype="multipart/form-data">
           @csrf
           @method('PUT')
           <div class="mb-3 row">

@@ -7,6 +7,7 @@ use App\Models\Address;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class AddressController extends Controller
 {
@@ -32,8 +33,9 @@ class AddressController extends Controller
      */
     public function create()
     {
-        $title = 'Addresses';
-        return view('pages.addresses.create', compact('title'));
+        // return $response['provinsi'];
+        // $title = 'Addresses';
+        // return view('pages.addresses.create', compact('title'));
     }
 
     /**

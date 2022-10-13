@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
 use App\Models\Motorcycle;
+use App\Models\MotorcycleBrand;
+use App\Models\MotorcycleType;
 use App\Models\UserOwner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class MotorcycleController extends Controller
 {
@@ -34,7 +38,11 @@ class MotorcycleController extends Controller
     public function create()
     {
         $title = 'Motorcycles';
-        return view('pages.motorcycles.create', compact('title'));
+        $types = MotorcycleType::all();
+        $brands = MotorcycleBrand::all();
+        return view('pages.motorcycles.create', compact([
+            'title', 'types', 'brands'
+        ]));
     }
 
     /**
@@ -46,14 +54,36 @@ class MotorcycleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
-        ]);
-
-        Motorcycle::create([
-            'name' => $request->name
+            'motorcycle_type_id' => 'required',
+            'motorcycle_brand_id' => 'required',
+            'motorcycle_name' => 'required',
+            'production_year' => 'required|max:4',
+            'police_number' => 'required|string|max:20',
+            'motorcycle_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'vehicle_registration' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         
-        return redirect('/u/author')->with('success', "Data berhasil ditambahkan");
+        $owner = UserOwner::where('user_id', Auth::user()->id)->first();
+
+        if($request->file('motorcycle_photo') && $request->file('vehicle_registration')){
+            $motorcycle_photo = $request->file('motorcycle_photo')->store('motorcycle/'. $owner->id, 'public');
+            $vehicle_registration = $request->file('vehicle_registration')->store('motorcycle/'. $owner->id, 'public');
+        }
+
+
+        Motorcycle::create([
+            'user_owner_id' => $owner->id,
+            'motorcycle_type_id' => $request->motorcycle_type_id,
+            'motorcycle_brand_id' => $request->motorcycle_brand_id,
+            'motorcycle_name' => $request->motorcycle_name,
+            'production_year' => $request->production_year,
+            'police_number' => $request->police_number,
+            'motorcycle_photo' => $motorcycle_photo,
+            'vehicle_registration' => $vehicle_registration,
+            'description' => $request->description,
+        ]);
+        
+        return redirect('/v2/motorcycle')->with('success', "Data berhasil ditambahkan");
     }
 
     /**
@@ -79,11 +109,16 @@ class MotorcycleController extends Controller
      */
     public function edit($id)
     {
+        $owner = UserOwner::where('user_id', Auth::user()->id)->first();
         $title = 'Motorcycles';
+        $types = MotorcycleType::all();
+        $brands = MotorcycleBrand::all();
         $tables = Motorcycle::with('motorcycle_type')->with('motorcycle_brand')
-                    ->where('user_id', Auth::user()->id)
+                    ->where('user_owner_id', $owner->id)
                     ->where('id', $id)->first();
-        return view('pages.motorcycles.edit', compact('title', 'tables'));
+        return view('pages.motorcycles.edit', compact([
+            'title', 'tables', 'types', 'brands'
+        ]));
     }
 
     /**
@@ -96,14 +131,47 @@ class MotorcycleController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required'
-        ]);
-
-        Motorcycle::where('id', $id)->update([
-            'name' => $request->name
+            'motorcycle_type_id' => 'required',
+            'motorcycle_brand_id' => 'required',
+            'motorcycle_name' => 'required',
+            'production_year' => 'required|max:4',
+            'police_number' => 'required|string|max:20',
         ]);
         
-        return redirect('/u/author')->with('success', "Data berhasil diubah");
+        // dd($request->all());
+
+        $owner = UserOwner::where('user_id', Auth::user()->id)->first();
+
+        
+        // $motorcycle_photo = null;
+        // $vehicle_registration = null;
+        
+        if($owner->motorcycle_photo && file_exists(storage_path('app/public/'. $owner->motorcycle_photo)) && $owner->vehicle_registration && file_exists(storage_path('app/public/'. $owner->vehicle_registration))){
+            Storage::delete(['public/', $owner->motorcycle_photo]);
+            Storage::delete(['public/', $owner->vehicle_registration]);
+        }
+        // dd(($motorcycle_photo == null) ? $request->mtr_photo : $motorcycle_photo);
+        
+        if($request->file('motorcycle_photo') && $request->file('vehicle_registration')){
+            $motorcycle_photo = $request->file('motorcycle_photo')->store('motorcycle/'. $owner->id, 'public');
+            $vehicle_registration = $request->file('vehicle_registration')->store('motorcycle/'. $owner->id, 'public');
+        }
+        // dd(($motorcycle_photo == null) ? $owner->motorcycle_photo : $motorcycle_photo);
+
+
+        Motorcycle::where('id', $id)->update([
+            'user_owner_id' => $owner->id,
+            'motorcycle_type_id' => $request->motorcycle_type_id,
+            'motorcycle_brand_id' => $request->motorcycle_brand_id,
+            'motorcycle_name' => $request->motorcycle_name,
+            'production_year' => $request->production_year,
+            'police_number' => $request->police_number,
+            'motorcycle_photo' => ($motorcycle_photo == null) ? $owner->vehicle_registration : $motorcycle_photo,
+            'vehicle_registration' => ($vehicle_registration == null) ? $owner->vehicle_registration : $vehicle_registration,
+            'description' => $request->description,
+        ]);
+        
+        return redirect('/v2/motorcycle')->with('success', "Data berhasil diubah");
     }
 
     /**
@@ -115,6 +183,6 @@ class MotorcycleController extends Controller
     public function destroy($id)
     {
         Motorcycle::where('id', $id)->delete();
-        return redirect('/u/author')->with('success', "Data berhasil dihapus");
+        return redirect('/v2/motorcycle')->with('success', "Data berhasil dihapus");
     }
 }

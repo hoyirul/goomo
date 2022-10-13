@@ -4,7 +4,7 @@
 <div class="row mb-1">
   <div class="col-md-12 mb-3">
     <a href="/" class="text-decoration-none float-end text-dark"><span class="fa fa-home me-1"></span> Home</a>
-    <h5 class="float-start font-semibold">Transactions</h5>
+    <h5 class="float-start font-semibold">{{ $title }}</h5>
   </div>
 
   @include('pages.partials.sidebar')
@@ -12,8 +12,8 @@
   <div class="col-md-9 mb-3">
     <div class="card w-100 border-0 rad-10">
       <div class="card-body m-3">
-        <h6 class="font-medium">Transactions</h6>
-        <p class="top-5 color-grey fs-small text-grey font-regular">App / User / <span class="color-primary">Transactions</span></p>
+        <h6 class="font-medium">{{ $title }}</h6>
+        <p class="top-5 color-grey fs-small text-grey font-regular">App / User / <span class="color-primary">{{ $title }}</span></p>
         
         @if(session('success'))
           <div class="alert alert-success">
@@ -38,7 +38,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($orders as $item)
+            @foreach ($tables as $item)
               <tr>
                 <th scope="row" class="text-center">{{ $loop->iteration }}</th>
                 <td>#{{ $item->id }}</td>
