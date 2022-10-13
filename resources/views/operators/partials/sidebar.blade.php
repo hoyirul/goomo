@@ -2,9 +2,10 @@
 <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center mb-5 justify-content-center" href="{{ url('/home') }}">
-    <div class="sidebar-brand-icon rotate-n-15 px-1">
-      <i class="fas fa-book"></i>
+  <a class="sidebar-brand d-flex align-items-center mb-5 justify-content-center" href="{{ url('/') }}">
+    <div class="sidebar-brand-icon px-1">
+      {{-- <i class="fas fa-book"></i> --}}
+      <img src="{{ asset('img/logo-putih.png') }}" alt="Goomo">
     </div><br>
     <div class="sidebar-brand-text">Goomo</div>
   </a>
@@ -20,7 +21,7 @@
 
   @if (Auth::user()->role_id == 2)
     <li class="nav-item active border-top border-bottom">  
-      <a class="nav-link px-5" href="/u/dashboard">
+      <a class="nav-link px-5" href="/operator/dashboard">
         <i class="fas fa-fw fa-home"></i>
         <span>Dashboard</span>
       </a>
@@ -29,13 +30,14 @@
     <li class="nav-item active border-bottom">
       <a class="nav-link px-5 collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
         <i class="fas fa-fw fa-users"></i>
-        <span>Users</span>
+        <span>User</span>
       </a>
       <div id="collapseUsers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">User Supports</h6>
-          <a class="collapse-item" href="/u/admins">Admin</a>
-          <a class="collapse-item" href="/u/customers">Customers</a>
+          <a class="collapse-item" href="/operator/admin">Admin</a>
+          <a class="collapse-item" href="/operator/owner">Owner</a>
+          <a class="collapse-item" href="/operator/customer">Customer</a>
           {{-- <div class="collapse-divider"></div>
           <h6 class="collapse-header">Other Pages:</h6>
           <a class="collapse-item" href="#">404 Page</a>
@@ -52,9 +54,9 @@
       <div id="collapseMaster" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Book Supports</h6>
-          <a class="collapse-item" data-id="authors" href="/u/author">Authors</a>
-          <a class="collapse-item" href="/u/publisher">Publishers</a>
-          <a class="collapse-item" href="/u/genre">Genres</a>
+          <a class="collapse-item" data-id="Motorcycle" href="/operator/motorcycle">Motorcycle</a>
+          <a class="collapse-item" href="/operator/motorcycle-brand">Motorcycle Brand</a>
+          <a class="collapse-item" href="/operator/motorcycle-type">Motorcycle Type</a>
           {{-- <div class="collapse-divider"></div>
           <h6 class="collapse-header">Other Pages:</h6>
           <a class="collapse-item" href="#">404 Page</a>

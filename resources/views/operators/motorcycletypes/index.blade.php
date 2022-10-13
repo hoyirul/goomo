@@ -1,4 +1,4 @@
-@extends('operators.layouts.main')
+@extends('Operators.layouts.main')
 
 @section('content')
 <!-- Begin Page Content -->
@@ -23,24 +23,22 @@
     <div class="card-body">
       <h5 class="m-0 font-weight-bold color-primary mb-2" data-id="titleAuthor">Tabel Data {{ $title }}</h5>
       <p class="mb-3 float-left">Halaman ini untuk pengelolaan {{ strtolower($title) }}</p>
-      <a href="/u/motorcycletypes/create" data-id="authorAdd" class="btn btn-primary py-2 px-3 fs-normal float-right mb-3 shadow-sm"><span class="fas fa-user-plus"></span> Tambah Data</a>
+      <a href="/u/author/create" data-id="authorAdd" class="btn btn-primary py-2 px-3 fs-normal float-right mb-3 shadow-sm"><span class="fas fa-user-plus"></span> Tambah Data</a>
       
       <div class="table-responsive">
         <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th class="text-center">NO</th>
+              <th class="text-center">No ID</th>
               <th>Nama</th>
-              
-              <!-- <th class="text-center">Aksi</th> -->
             </tr>
           </thead>
           <tbody>
             @foreach($tables as $row)
             <tr>
               <td class="text-center">{{ $row->id }}</td>
-              <td>{{ $row->name }}</td>
-              <!-- <td class="text-center">
+              <td>{{ $row->type_name }}</td>
+              <td class="text-center">
                 <form action="/u/author/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
                   @csrf
                   @method('DELETE')
@@ -55,7 +53,7 @@
                   Hapus
                   </button>
                 </form>
-              </td> -->
+              </td>
             </tr>
             @endforeach
           </tbody>

@@ -1,36 +1,43 @@
-@extends('pages.layouts.main')
+@extends('operators.layouts.main')
 
 @section('content')
-<div class="row mb-1">
-  <div class="col-md-12 mb-3">
-    <a href="/" class="text-decoration-none float-end text-dark"><span class="fa fa-home me-1"></span> Home</a>
-    <h5 class="float-start font-semibold">Dashboard</h5>
+<!-- Begin Page Content -->
+<div class="container fs-normal">
+  <!-- Page Heading -->
+  <p class="mb-3">Tabel / Data / <span class="color-primary">{{ $title }}</span></p>
+  <div class="row">
+    <div class="col-md-6">
+      <h5 class="m-0 font-weight-bold color-primary mb-2">{{ $title }} - {{ auth()->user()->email }}</h5>
+      <p class="mb-4">Hati-hati dalam input data. Tolong di perhatikan dengan teliti!.</p>
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+      <a href="/u/change_password" class="btn btn-primary mx-2 py-2 shadow-sm fs-normal align-self-center px-3 mt-n3">
+        <span class="fas fa-cogs"></span> Pengaturan</a>
+    </div>
   </div>
 
-  @include('pages.partials.sidebar')
+  @if(session('success'))
+    <div class="alert alert-success">
+      {{session('success')}}
+    </div>
+  @endif
 
-  <div class="col-md-9 mb-3">
-    <div class="card w-100 border-0 rad-10">
-      <div class="card-body m-3">
-        <h6 class="font-medium">Dahsboard</h6>
-        <p class="top-5 color-grey fs-small text-grey font-regular">App / User / <span class="color-primary">Dashboard</span></p>
-        
-        @if(session('success'))
-          <div class="alert alert-success">
-            {{session('success')}}
-          </div>
-        @endif
-        @if(session('danger'))
-        <div class="alert alert-danger">
-          {{session('danger')}}
-        </div>
-        @endif
-
-        <form action="/user/update" method="post" enctype="multipart/form-data">
-          @csrf
-          @method('PUT')
-
-          <div class="mb-3 row">
+  @if(session('danger'))
+    <div class="alert alert-danger">
+      {{session('danger')}}
+    </div>
+  @endif
+  
+  <!-- DataTales Example -->
+  <div class="card border-0 shadow mb-4">
+    <div class="card-header bg-white py-3">
+      <h6 class="m-0 font-weight-bold color-primary">Data {{ $title }}</h6>
+    </div>
+    <div class="card-body container-fluid">
+      <form method="post" action="/u/update_profile" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <div class="mb-3 row">
             <div class="col-md-6">
               <label for="email" class="fs-normal mb-1">Email : </label>
               <input type="email" name="email" class="form-control rad-6 fs-normal @error('email') is-invalid @enderror" placeholder="Email" readonly value="{{ $data->user->email }}">
@@ -114,10 +121,10 @@
           <div class="mb-3">
             <button type="submit" class="btn btn-primary fs-normal px-5 float-end py-2 rad-6">Update</button>
           </div>
-
-        </form>
-      </div>
+            
+      </form>
     </div>
   </div>
 </div>
+<!-- /.container-fluid -->
 @endsection
