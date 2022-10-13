@@ -5,7 +5,13 @@ use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
 use App\Models\MotorcycleType;
 use App\Http\Controllers\Pages\AddressController as AddressControllerPages;
 use App\Http\Controllers\Pages\DashboardController as DashboardControllerPages;
-use App\Http\Controllers\Operators\DashboardController as DashboardControllerOperators;
+use App\Http\Controllers\Operator\DashboardController as DashboardControllerOperators;
+use App\Http\Controllers\Operator\OwnerController as OwnerControllerOperators;
+use App\Http\Controllers\Operator\AdminController as AdminControllerOperators;
+use App\Http\Controllers\Operator\CustomerController as CustomerControllerOperators;
+use App\Http\Controllers\Operator\MotorcycleController as MotorcycleControllerOperators;
+use App\Http\Controllers\Operator\MotorcycleBrandsController as MotorcycleBrandsControllerOperators;
+use App\Http\Controllers\Operator\MotorcycleTypeController as MotorcycleTypeControllerOperators;
 // use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
 use App\Http\Controllers\Pages\MotorcycleController as MotorcycleControllerPages;
 use App\Http\Controllers\Pages\SettingController as SettingControllerPages;
@@ -32,6 +38,24 @@ Route::middleware(['auth', 'isOperator'])->group(function(){
     Route::prefix('operator')->group(function(){
         Route::controller(DashboardControllerOperators::class)->group(function() {
             Route::get('/dashboard', 'index');
+        });
+        Route::controller(OwnerControllerOperators::class)->group(function() {
+            Route::get('/owner', 'index');
+        });
+        Route::controller(AdminControllerOperators::class)->group(function() {
+            Route::get('/admin', 'index');
+        });
+        Route::controller(CustomerControllerOperators::class)->group(function() {
+            Route::get('/customer', 'index');
+        });
+        Route::controller(MotorcycleControllerOperators::class)->group(function() {
+            Route::get('/motorcycle', 'index');
+        });
+        Route::controller(MotorcycleBrandsControllerOperators::class)->group(function() {
+            Route::get('/motorcycle-brand', 'index');
+        });
+        Route::controller(MotorcycleTypeControllerOperators::class)->group(function() {
+            Route::get('/motorcycle-type', 'index');
         });
         // Route::controller(Dasb)  
         Route::resource('motorcycletype', MotorcycleTypeController::class);

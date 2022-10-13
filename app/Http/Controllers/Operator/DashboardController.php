@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Pages;
+namespace App\Http\Controllers\Operator;
 
 use App\Http\Controllers\Controller;
-use App\Models\UserCustomer;
-use App\Models\UserOperator;
-use App\Models\UserOwner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\UserOperator;
 
 class DashboardController extends Controller
 {
     public function index(){
-        $title = '';
+        $title = 'Dashboard';
         $data = '';
         $tables = [];
         if(Auth::user()->role_id == 2){

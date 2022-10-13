@@ -13,7 +13,7 @@
       <div class="d-flex">
         @auth
           @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
-            <a href="/operator/dashboard" class="rad-8 btn btn-dark btn-sm fs-normal font-regular p-2 px-5 float-end"><span class="fa fa-cogs me-1"></span> Dashboard</a>   
+            <a href="/operator/dashboard" class="rad-8 btn btn-dark btn-sm fs-normal font-regular p-2 px-5 float-end"><span class="fa fa-cogs me-1"></span> Dashboard</a>      
           @else
             <a href="/v2/dashboard" class="rad-8 btn btn-primary btn-sm fs-normal font-regular p-2 px-5 float-end me-2"><span class="fa fa-cogs me-1"></span> Dashboard</a>            
             <a href="/cart/{{ Auth::user()->id }}/show" class="rad-8 btn btn-dark btn-sm position-relative fs-normal font-regular p-2 px-5 float-end me-2"><span class="fa fa-credit-card me-1"></span> Payments
