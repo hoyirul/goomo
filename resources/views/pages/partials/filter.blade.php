@@ -14,8 +14,8 @@
 
           <div class="">
             <select name="genre_id" id="genre_id" class="form-control rad-8 fs-normal">
-              <option disabled selected>Select Book Genre</option>
-              @foreach ($genres as $item)  
+              <option disabled selected>Select Brand</option>
+              @foreach ($brands as $item)  
                 <option value="{{ $item->id }}">{{ $item->genre }}</option>
               @endforeach
             </select>

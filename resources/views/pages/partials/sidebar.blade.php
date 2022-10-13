@@ -20,9 +20,11 @@
           <div class="mb-3">
             <a href="/v2/address" class="text-decoration-none px-3 fs-normal text-dark"><span class="fa fa-map me-2"></span> Addresses</a>
           </div>
-          <div class="mb-3">
-            <a href="/v2/motorcycle" class="text-decoration-none px-3 fs-normal text-dark"><span class="fa fa-motorcycle me-1"></span> Motorcycles</a>
-          </div>
+          @if (Auth::user()->role_id == 4)
+            <div class="mb-3">
+              <a href="/v2/motorcycle" class="text-decoration-none px-3 fs-normal text-dark"><span class="fa fa-motorcycle me-1"></span> Motorcycles</a>
+            </div>
+          @endif
           <div class="mb-3">
             <a href="/v2/transaction" class="text-decoration-none px-3 fs-normal text-dark"><span class="fa fa-calendar me-2"></span> Transactions</a>
           </div>

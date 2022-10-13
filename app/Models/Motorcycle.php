@@ -18,4 +18,8 @@ class Motorcycle extends Model
     public function motorcycle_brand(){
         return $this->belongsTo(MotorcycleBrand::class);
     }
+
+    public function user_owner(){
+        return $this->belongsTo(UserOwner::class);
+    }
 }

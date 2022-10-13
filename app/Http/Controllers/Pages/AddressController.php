@@ -18,11 +18,11 @@ class AddressController extends Controller
      */
     public function index()
     {
-        $orders = [];
         $title = 'Addresses';
-        $tables = UserAddress::with('user')->with('address')->where('user_id', Auth::user()->id)->get();
+        $tables = UserAddress::with('user')->with('address')
+                    ->where('user_id', Auth::user()->id)->get();
         return view('pages.addresses.index', compact([
-            'tables', 'title', 'orders'
+            'tables', 'title'
         ]));
     }
 
@@ -33,9 +33,8 @@ class AddressController extends Controller
      */
     public function create()
     {
-        // return $response['provinsi'];
-        // $title = 'Addresses';
-        // return view('pages.addresses.create', compact('title'));
+        $title = 'Addresses';
+        return view('pages.addresses.create', compact('title'));
     }
 
     /**
@@ -47,14 +46,27 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'province' => 'required|string|max:50',
+            'city' => 'required|string|max:50',
+            'districts' => 'required|string|max:50',
+            'ward' => 'required|string|max:50'
         ]);
 
         Address::create([
-            'name' => $request->name
+            'province' => $request->province,
+            'city' => $request->city,
+            'districts' => $request->districts,
+            'ward' => $request->ward,
         ]);
         
-        return redirect('/u/author')->with('success', "Data berhasil ditambahkan");
+        $address = Address::orderBy('id', 'DESC')->first();
+
+        UserAddress::create([
+            'user_id' => Auth::user()->id,
+            'address_id' => $address->id
+        ]);
+        
+        return redirect('/v2/address')->with('success', "Data berhasil ditambahkan");
     }
 
     /**
@@ -79,7 +91,7 @@ class AddressController extends Controller
     public function edit($id)
     {
         $title = 'Addresses';
-        $tables = Address::with('motorcycle_type')->with('motorcycle_brand')->where('id', $id)->first();
+        $tables = Address::with('user_address')->where('id', $id)->first();
         return view('pages.addresses.edit', compact('title', 'tables'));
     }
 
@@ -92,15 +104,22 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required'
-        ]);
+        // $request->validate([
+        //     'province' => 'required|string|max:50',
+        //     'city' => 'required|string|max:50',
+        //     'dictricts' => 'required|string|max:50',
+        //     'ward' => 'required|string|max:50'
+        // ]);
+
 
         Address::where('id', $id)->update([
-            'name' => $request->name
+            'province' => $request->province,
+            'city' => $request->city,
+            'districts' => $request->districts,
+            'ward' => $request->ward,
         ]);
         
-        return redirect('/u/author')->with('success', "Data berhasil diubah");
+        return redirect('/v2/address')->with('success', "Data berhasil diubah");
     }
 
     /**
@@ -111,7 +130,8 @@ class AddressController extends Controller
      */
     public function destroy($id)
     {
+        UserAddress::where('address_id', $id)->delete();
         Address::where('id', $id)->delete();
-        return redirect('/u/author')->with('success', "Data berhasil dihapus");
+        return redirect('/v2/address')->with('success', "Data berhasil dihapus");
     }
 }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->dateTime('end_at')->nullable();
             $table->text('information')->nullable();
             $table->float('total');
-            $table->enum('status', ['active', 'inactive'])->default('inactive');
+            $table->enum('status', ['paid', 'unpaid', 'processing'])->default('unpaid');
             $table->timestamps();
         });
     }

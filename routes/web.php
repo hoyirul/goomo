@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeControllerPages::class, 'index']);
+Route::get('/motorcycle/{id}/show', [HomeControllerPages::class, 'show']);
 
 Auth::routes();
 // Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -77,10 +78,11 @@ Route::middleware('auth')->group(function() {
         
         Route::controller(TransactionControllerPages::class)->group(function() {
             Route::get('/transaction', 'index');
+            Route::post('/transaction', 'store');
         });
+        Route::resource('/address', AddressControllerPages::class);
 
         Route::middleware(['isOwner'])->group(function() {
-            Route::resource('/address', AddressControllerPages::class);
             Route::resource('/motorcycle', MotorcycleControllerPages::class);
         });
     });

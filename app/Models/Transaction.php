@@ -11,6 +11,7 @@ class Transaction extends Model
 
     protected $primaryKey = 'txid';
     protected $fillable = ['txid', 'user_customer_id', 'motorcycle_id', 'start_at', 'end_at', 'information', 'total', 'status'];
+    public $incrementing = false;
 
     public function user_customer(){
         return $this->belongsTo(UserCustomer::class);
