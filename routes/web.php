@@ -2,13 +2,12 @@
 
 use App\Http\Controllers\Operator\MotorcycleTypeController;
 use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
-use App\Models\MotorcycleType;
 use App\Http\Controllers\Pages\AddressController as AddressControllerPages;
 use App\Http\Controllers\Pages\DashboardController as DashboardControllerPages;
 use App\Http\Controllers\Operators\DashboardController as DashboardControllerOperators;
-// use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
 use App\Http\Controllers\Pages\MotorcycleController as MotorcycleControllerPages;
 use App\Http\Controllers\Pages\SettingController as SettingControllerPages;
+use App\Http\Controllers\Pages\TransactionController as TransactionControllerPages;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +30,7 @@ Auth::routes();
 Route::middleware(['auth', 'isOperator'])->group(function(){
     Route::prefix('operator')->group(function(){
         Route::controller(DashboardControllerOperators::class)->group(function() {
-            Route::get('/dashboard', 'index');
+            // Route::get('/dashboard', 'index');
         });
         // Route::controller(Dasb)  
         Route::resource('motorcycletype', MotorcycleTypeController::class);
@@ -47,6 +46,12 @@ Route::middleware('auth')->group(function() {
         
         Route::controller(SettingControllerPages::class)->group(function() {
             Route::get('/change_password', 'change_password');
+            Route::put('/update_password', 'update_password');
+            Route::put('/update_profile', 'update_profile');
+        });
+        
+        Route::controller(TransactionControllerPages::class)->group(function() {
+            Route::get('/transaction', 'index');
         });
 
         Route::middleware(['isOwner'])->group(function() {

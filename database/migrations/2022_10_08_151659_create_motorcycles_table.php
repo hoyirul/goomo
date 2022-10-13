@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('motorcycle_photo')->nullable();
             $table->text('vehicle_registration')->nullable();
             $table->text('description')->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }
