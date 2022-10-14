@@ -29,7 +29,6 @@
         <table class="table fs-normal table-striped table-hover">
           <thead>
             <tr>
-              <th scope="col" class="text-center">#</th>
               <th scope="col">TXID</th>
               <th scope="col">Motorcycle</th>
               <th scope="col">Owner</th>
@@ -41,19 +40,19 @@
           <tbody>
             @foreach ($tables as $item)
               <tr>
-                <th scope="row" class="text-center">{{ $loop->iteration }}</th>
                 <td>#{{ $item->txid }}</td>
                 <td>{{ $item->motorcycle->motorcycle_name }}</td>
                 <td>{{ $item->motorcycle->user_owner->name }}</td>
                 <td>Rp. {{ number_format($item->total) }}</td>
                 <td>
-                  <a href="/user/transaction/{{ $item->id }}/detail" class="badge bg-badge-info color-info rad-6 fs-small text-decoration-none">Detail</a>
+                  <a href="/v2/transaction/{{ $item->txid }}/show" class="badge bg-badge-info color-info rad-6 fs-small text-decoration-none">Detail</a>
+                  <a href="/v2/transaction/{{ $item->txid }}/payment" class="badge bg-badge-danger text-danger rad-6 fs-small text-decoration-none">Pay</a>
                 </td>
                 <td class="text-center">
                   @if ($item->status == 'unpaid')
                     <span class="badge bg-badge-danger text-danger rad-6 fs-small">Unpaid</span>
                   @else
-                    <span class="badge bg-badge-success color-primary rad-6 fs-small">Paid</span>
+                    <span class="badge bg-badge-success text-success rad-6 fs-small">Paid</span>
                   @endif
                 </td>
               </tr>

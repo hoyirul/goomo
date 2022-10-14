@@ -10,8 +10,6 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-// use Illuminate\Support\Facades\Http;
-
 class TransactionController extends Controller
 {
     public function index(){
