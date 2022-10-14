@@ -39,7 +39,7 @@ Auth::routes();
 Route::middleware(['auth', 'isOperator'])->group(function(){
     Route::prefix('operator')->group(function(){
         Route::controller(DashboardControllerOperators::class)->group(function() {
-            // Route::get('/dashboard', 'index');
+            Route::get('/dashboard', 'index');
         });
         Route::controller(OwnerControllerOperators::class)->group(function() {
             Route::get('/owner', 'index');
@@ -49,6 +49,8 @@ Route::middleware(['auth', 'isOperator'])->group(function(){
         });
         Route::controller(CustomerControllerOperators::class)->group(function() {
             Route::get('/customer', 'index');
+            Route::get('/customer-edit/{id}','edit');
+            Route::put('/customer-update/{id}','update');
         });
         Route::controller(MotorcycleControllerOperators::class)->group(function() {
             Route::get('/motorcycle', 'index');
@@ -75,6 +77,7 @@ Route::middleware('auth')->group(function() {
     Route::prefix('/v2')->group(function() {
         Route::controller(DashboardControllerPages::class)->group(function() {
             Route::get('/dashboard', 'index');
+            Route::get('/update-dashboard', 'update');
         });
         
         Route::controller(SettingControllerPages::class)->group(function() {

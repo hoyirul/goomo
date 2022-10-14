@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserCustomer;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class CustomerController extends Controller
 {
@@ -61,7 +63,8 @@ class CustomerController extends Controller
     {
         $title = 'Customer Types';
         $tables = UserCustomer::where('id', $id)->first();
-        return view('operators.customers.show', compact('title', 'tables'));
+        $user = User::all();
+        return view('operators.customers.show', compact('title', 'tables', 'users'));
     }
 
     /**
@@ -73,8 +76,8 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $title = 'Customer Types';
-        $tables = UserCustomer::where('id', $id)->first();
-        return view('operators.customers.edit', compact('title', 'tables'));
+        $data = UserCustomer::where('id', $id)->first();
+        return view('operators.customers.edit', compact('title', 'data'));
     }
 
     /**
@@ -86,12 +89,41 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $tables = UserCustomer::where('id', $id)->first();
+
         $request->validate([
-            'name' => 'required'
+            'name' => 'required|string|max:50',
+            'phone' => 'required',
+            'gender' => 'required',
+            'identity_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'driver_license' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'selfie_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $image = null;
+        $identity_photo = null;
+        $driver_license = null;
+        $selfie_photo = null;
+
+        if($tables->image && file_exists(storage_path('app/public/'. $tables->cover_image))){
+            Storage::delete(['public/', $tables->cover_image]);
+        }
+
+        if($request->image != null && $request->identity_photo && $request->driver_license && $request->selfie_photo){
+            $image = $request->file('image')->store('profile/'. $request->id, 'public');
+            $identity_photo = $request->file('identity_photo')->store('archives/'. $request->id, 'public');
+            $driver_license = $request->file('driver_license')->store('archives/'. $request->id, 'public');
+            $selfie_photo = $request->file('selfie_photo')->store('archives/'. $request->id, 'public');
+        }
+
         UserCustomer::where('id', $id)->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'gender' => $request->gender,
+            'identity_photo' => ($identity_photo != null) ? $request->identity_photo : $identity_photo,
+            'driver_license' => ($driver_license != null) ? $request->driver_license : $driver_license,
+            'selfie_photo' => ($selfie_photo != null) ? $request->selfie_photo : $selfie_photo
         ]);
         
         return redirect('/operator/customer')->with('success', "Data berhasil diubah");
