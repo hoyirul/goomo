@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_operator_id')->constrained();
+            $table->foreignId('user_operator_id')->nullable()->constrained();
+            $table->foreignId('user_customer_id')->nullable()->constrained();
             $table->string('txid')->nullable();
             $table->foreign('txid')->references('txid')->on('transactions');
             $table->string('invoice', 20);
-            $table->text('evidence_of_transafer')->nullable();
+            $table->text('evidence_of_transfer')->nullable();
             $table->dateTime('paid_date')->nullable();
             $table->float('pay');
             $table->enum('status', ['unpaid', 'processing', 'paid'])->default('unpaid');

@@ -30,9 +30,9 @@
           <thead>
             <tr>
               <th scope="col">TXID</th>
-              <th scope="col">Motorcycle</th>
-              <th scope="col">Owner</th>
+              <th scope="col">INV</th>
               <th scope="col">Total</th>
+              <th scope="col">Date</th>
               <th scope="col">Action</th>
               <th scope="col" class="text-center">Status</th>
             </tr>
@@ -40,15 +40,12 @@
           <tbody>
             @foreach ($tables as $item)
               <tr>
-                <td>#{{ $item->txid }}</td>
-                <td>{{ $item->motorcycle->motorcycle_name }}</td>
-                <td>{{ $item->user_owner->name }}</td>
-                <td>Rp. {{ number_format($item->total) }}</td>
+                <td><a href="/v2/transaction/{{ $item->txid }}/show">#{{ $item->txid }}</a></td>
+                <td class="font-semibold">#{{ $item->invoice }}</td>
+                <td>Rp. {{ number_format($item->transaction->total) }}</td>
+                <td>{{ $item->paid_date }}</td>
                 <td>
                   <a href="/v2/transaction/{{ $item->txid }}/show" class="badge bg-badge-info color-info rad-6 fs-small text-decoration-none">Detail</a>
-                  @if ($item->status == 'unpaid')
-                    <a href="/v2/payment/{{ $item->txid }}/create" class="badge bg-badge-danger text-danger rad-6 fs-small text-decoration-none">Pay</a>
-                  @endif
                 </td>
                 <td class="text-center">
                   @if ($item->status == 'unpaid')

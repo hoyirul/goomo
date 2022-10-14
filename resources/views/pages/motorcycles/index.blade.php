@@ -65,9 +65,9 @@
                 </td>
                 <td class="text-center">
                   @if ($item->status == 'inactive')
-                    <span class="badge bg-badge-danger text-danger rad-6 fs-small">{{ $item->status }}</span>
+                    <a href="/v2/motorcycle/{{ $item->id }}/activated" onclick="return confirm('Are you sure?')"><span class="badge bg-badge-danger text-danger rad-6 fs-small">{{ $item->status }}</span></a>
                   @else
-                    <span class="badge bg-badge-success text-success rad-6 fs-small">{{ $item->status }}</span>
+                    <a href="/v2/motorcycle/{{ $item->id }}/inactivated" onclick="return confirm('Are you sure?')"><span class="badge bg-badge-success text-success rad-6 fs-small">{{ $item->status }}</span></a>
                   @endif
                 </td>
               </tr>

@@ -174,6 +174,24 @@ class MotorcycleController extends Controller
         return redirect('/v2/motorcycle')->with('success', "Data berhasil diubah");
     }
 
+    public function activated($id)
+    {
+        Motorcycle::where('id', $id)->update([
+            'status' => 'active',
+        ]);
+        
+        return redirect('/v2/motorcycle')->with('success', "Data berhasil diubah");
+    }
+
+    public function inactivated($id)
+    {
+        Motorcycle::where('id', $id)->update([
+            'status' => 'inactive',
+        ]);
+        
+        return redirect('/v2/motorcycle')->with('success', "Data berhasil diubah");
+    }
+
     /**
      * Remove the specified resource from storage.
      *

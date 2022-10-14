@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->string('txid')->primary();
             $table->foreignId('user_customer_id')->constrained();
+            $table->foreignId('user_owner_id')->constrained();
             $table->foreignId('motorcycle_id')->constrained();
             $table->dateTime('start_at')->nullable();
             $table->dateTime('end_at')->nullable();

@@ -15,6 +15,7 @@ use App\Http\Controllers\Operator\TransactionController as TransactionController
 use App\Http\Controllers\Operator\PaymentController as PaymentControllerOperators;
 // use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
 use App\Http\Controllers\Pages\MotorcycleController as MotorcycleControllerPages;
+use App\Http\Controllers\Pages\PaymentController as PaymentControllerPages;
 use App\Http\Controllers\Pages\SettingController as SettingControllerPages;
 use App\Http\Controllers\Pages\TransactionController as TransactionControllerPages;
 use Illuminate\Support\Facades\Auth;
@@ -90,11 +91,21 @@ Route::middleware('auth')->group(function() {
         Route::controller(TransactionControllerPages::class)->group(function() {
             Route::get('/transaction', 'index');
             Route::post('/transaction', 'store');
+            Route::get('/transaction/{id}/show', 'show');
         });
+
+        Route::controller(PaymentControllerPages::class)->group(function() {
+            Route::get('/payment', 'index');
+            Route::get('/payment/{id}/create', 'create');
+            Route::post('/payment', 'store');
+        });
+
         Route::resource('/address', AddressControllerPages::class);
 
         Route::middleware(['isOwner'])->group(function() {
             Route::resource('/motorcycle', MotorcycleControllerPages::class);
+            Route::get('/motorcycle/{id}/activated', [MotorcycleControllerPages::class, 'activated']);
+            Route::get('/motorcycle/{id}/inactivated', [MotorcycleControllerPages::class, 'inactivated']);
         });
     });
 });
