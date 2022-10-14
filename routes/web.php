@@ -11,6 +11,8 @@ use App\Http\Controllers\Operator\CustomerController as CustomerControllerOperat
 use App\Http\Controllers\Operator\MotorcycleController as MotorcycleControllerOperators;
 use App\Http\Controllers\Operator\MotorcycleBrandsController as MotorcycleBrandsControllerOperators;
 use App\Http\Controllers\Operator\MotorcycleTypeController as MotorcycleTypeControllerOperators;
+use App\Http\Controllers\Operator\TransactionController as TransactionControllerOperators;
+use App\Http\Controllers\Operator\PaymentController as PaymentControllerOperators;
 // use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
 use App\Http\Controllers\Pages\MotorcycleController as MotorcycleControllerPages;
 use App\Http\Controllers\Pages\SettingController as SettingControllerPages;
@@ -38,7 +40,7 @@ Auth::routes();
 Route::middleware(['auth', 'isOperator'])->group(function(){
     Route::prefix('operator')->group(function(){
         Route::controller(DashboardControllerOperators::class)->group(function() {
-            // Route::get('/dashboard', 'index');
+            Route::get('/dashboard', 'index');
         });
         Route::controller(OwnerControllerOperators::class)->group(function() {
             Route::get('/owner', 'index');
@@ -48,6 +50,8 @@ Route::middleware(['auth', 'isOperator'])->group(function(){
         });
         Route::controller(CustomerControllerOperators::class)->group(function() {
             Route::get('/customer', 'index');
+            Route::get('/customer-edit/{id}','edit');
+            Route::put('/customer-update/{id}','update');
         });
         Route::controller(MotorcycleControllerOperators::class)->group(function() {
             Route::get('/motorcycle', 'index');
@@ -57,6 +61,12 @@ Route::middleware(['auth', 'isOperator'])->group(function(){
         });
         Route::controller(MotorcycleTypeControllerOperators::class)->group(function() {
             Route::get('/motorcycle-type', 'index');
+        });
+        Route::controller(TransactionControllerOperators::class)->group(function() {
+            Route::get('/transaction', 'index');
+        });
+        Route::controller(PaymentControllerOperators::class)->group(function() {
+            Route::get('/payment', 'index');
         });
         // Route::controller(Dasb)  
         Route::resource('motorcycletype', MotorcycleTypeController::class);
@@ -68,6 +78,7 @@ Route::middleware('auth')->group(function() {
     Route::prefix('/v2')->group(function() {
         Route::controller(DashboardControllerPages::class)->group(function() {
             Route::get('/dashboard', 'index');
+            Route::get('/update-dashboard', 'update');
         });
         
         Route::controller(SettingControllerPages::class)->group(function() {

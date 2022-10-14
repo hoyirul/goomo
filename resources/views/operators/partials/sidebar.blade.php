@@ -48,7 +48,7 @@
   
     <li class="nav-item active border-bottom">
       <a class="nav-link px-5 collapsed" data-id="masterData" href="#" data-toggle="collapse" data-target="#collapseMaster" aria-expanded="true" aria-controls="collapseMaster">
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fas fa-fw fa-motorcycle"></i>
         <span>Master</span>
       </a>
       <div id="collapseMaster" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -65,19 +65,21 @@
       </div>
     </li>
 
-    <li class="nav-item active border-top border-bottom">  
-      <a class="nav-link px-5" href="/u/book">
-        <i class="fas fa-fw fa-book"></i>
-        <span>Buku</span>
-      </a>
-    </li>
-
     <li class="nav-item active border-bottom">  
-      <a class="nav-link px-5" href="/u/transaction">
-        <i class="fas fa-fw fa-money-check"></i>
+      <a class="nav-link px-5" href="/operator/transaction">
+        <i class="fas fa-fw fas fa-shopping-cart"></i>
         <span>Transaksi</span>
       </a>
     </li>
+
+    <li class="nav-item active border-top border-bottom">  
+      <a class="nav-link px-5" href="/operator/payment">
+        <i class="fas fa-fw fa-money-check-alt"></i>
+        <span>Payment</span>
+      </a>
+    </li>
+
+    
   @endif
 
   {{-- <li class="nav-item active border-bottom">  

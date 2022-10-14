@@ -34,7 +34,7 @@
       <h6 class="m-0 font-weight-bold color-primary">Data {{ $title }}</h6>
     </div>
     <div class="card-body container-fluid">
-      <form method="post" action="/u/update_profile" enctype="multipart/form-data">
+      <form method="post" action="/operator/update-dashboard" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-3 row">

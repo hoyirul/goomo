@@ -33,7 +33,7 @@
               <th>Nama</th>
               <th class="text-center">Gender</th>
               <th class="text-center">Phone Number</th>
-              <th class="text-center">Action/th>
+              <th class="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -48,7 +48,7 @@
                   @csrf
                   @method('DELETE')
 
-                  <a href="/u/author/{{ $row->id }}/edit" data-id="authorEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
+                  <a href="/operator/customer-edit/{{ $row->id }}" data-id="authorEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
                     <span class="fa fa-fw fa-syringe mx-1"></span>
                     Edit
                   </a>
