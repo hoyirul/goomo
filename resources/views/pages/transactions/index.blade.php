@@ -30,8 +30,9 @@
           <thead>
             <tr>
               <th scope="col" class="text-center">#</th>
-              <th scope="col">INV</th>
-              <th scope="col">Date</th>
+              <th scope="col">TXID</th>
+              <th scope="col">Motorcycle</th>
+              <th scope="col">Owner</th>
               <th scope="col">Total</th>
               <th scope="col">Action</th>
               <th scope="col" class="text-center">Status</th>
@@ -41,8 +42,9 @@
             @foreach ($tables as $item)
               <tr>
                 <th scope="row" class="text-center">{{ $loop->iteration }}</th>
-                <td>#{{ $item->id }}</td>
-                <td>{{ $item->order_date }}</td>
+                <td>#{{ $item->txid }}</td>
+                <td>{{ $item->motorcycle->motorcycle_name }}</td>
+                <td>{{ $item->motorcycle->user_owner->name }}</td>
                 <td>Rp. {{ number_format($item->total) }}</td>
                 <td>
                   <a href="/user/transaction/{{ $item->id }}/detail" class="badge bg-badge-info color-info rad-6 fs-small text-decoration-none">Detail</a>

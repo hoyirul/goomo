@@ -122,7 +122,7 @@
           </div>
 
           <div class="mb-3">
-            <button type="submit" class="btn btn-primary fs-normal px-5 float-end py-2 rad-6">Submit</button>
+            <button type="submit" class="btn btn-primary fs-normal px-5 float-end py-2 rad-6">Update</button>
           </div>
 
         </form>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="row mb-1">
   <div class="col-md-12 mb-3">
-    <a href="/" class="text-decoration-none float-end text-dark"><span class="fa fa-home me-1"></span> Home</a>
+    <a href="/v2/address/create" class="text-decoration-none float-end text-dark fs-normal mt-2"><span class="fa fa-plus-circle me-1"></span> Add Address</a>
     <h5 class="float-start font-semibold">{{ $title }}</h5>
   </div>
 
@@ -30,29 +30,36 @@
           <thead>
             <tr>
               <th scope="col" class="text-center">#</th>
-              <th scope="col">INV</th>
-              <th scope="col">Date</th>
-              <th scope="col">Total</th>
-              <th scope="col">Action</th>
-              <th scope="col" class="text-center">Status</th>
+              <th scope="col">Province</th>
+              <th scope="col">City</th>
+              <th scope="col">Districts</th>
+              <th scope="col">Ward</th>
+              <th scope="col" class="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($orders as $item)
+            @foreach ($tables as $item)
               <tr>
                 <th scope="row" class="text-center">{{ $loop->iteration }}</th>
-                <td>#{{ $item->id }}</td>
-                <td>{{ $item->order_date }}</td>
-                <td>Rp. {{ number_format($item->total) }}</td>
-                <td>
-                  <a href="/user/transaction/{{ $item->id }}/detail" class="badge bg-badge-info color-info rad-6 fs-small text-decoration-none">Detail</a>
-                </td>
+                <td>{{ $item->address->province }}</td>
+                <td>{{ $item->address->city }}</td>
+                <td>{{ $item->address->districts }}</td>
+                <td>{{ $item->address->ward }}</td>
                 <td class="text-center">
-                  @if ($item->status == 'unpaid')
-                    <span class="badge bg-badge-danger text-danger rad-6 fs-small">Unpaid</span>
-                  @else
-                    <span class="badge bg-badge-success color-primary rad-6 fs-small">Paid</span>
-                  @endif
+                  <form action="/v2/address/{{ $item->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
+                    @csrf
+                    @method('DELETE')
+  
+                    <a href="/v2/address/{{ $item->id }}/edit" class="badge bg-badge-info color-info rad-6 fs-small text-decoration-none">
+                      <span class="fa fa-fw fa-syringe mx-1"></span>
+                      Edit
+                    </a>
+  
+                    <button type="submit" class="badge bg-badge-danger text-danger rad-6 fs-small border-0">
+                      <span class="fa fa-fw fa-trash mx-1"></span>
+                    Hapus
+                    </button>
+                  </form>
                 </td>
               </tr>
             @endforeach
