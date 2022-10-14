@@ -60,18 +60,28 @@ Route::middleware(['auth', 'isOperator'])->group(function(){
         });
         Route::controller(MotorcycleControllerOperators::class)->group(function() {
             Route::get('/motorcycle', 'index');
+            Route::get('/motorcycle-edit/{id}','edit');
+            Route::put('/motorcycle-update/{id}','update');
         });
         Route::controller(MotorcycleBrandsControllerOperators::class)->group(function() {
-            Route::get('/motorcycle-brand', 'index');
+            Route::get('/motorcyclebrand', 'index');
+            Route::get('/motorcyclebrand-edit/{id}','edit');
+            Route::put('/motorcyclebrand-update/{id}','update');
         });
         Route::controller(MotorcycleTypeControllerOperators::class)->group(function() {
-            Route::get('/motorcycle-type', 'index');
+            Route::get('/motorcycletype', 'index');
+            Route::get('/motorcycletype-edit/{id}','edit');
+            Route::put('/motorcycletype-update/{id}','update');
         });
         Route::controller(TransactionControllerOperators::class)->group(function() {
             Route::get('/transaction', 'index');
+            Route::get('/transaction-show/{id}', 'show');
+            Route::get('/transaction-update', 'update');
         });
         Route::controller(PaymentControllerOperators::class)->group(function() {
             Route::get('/payment', 'index');
+            Route::get('/payment-show/{id}', 'show');
+            Route::get('/payment-update', 'update');
         });
         // Route::controller(Dasb)  
         Route::resource('motorcycletype', MotorcycleTypeController::class);

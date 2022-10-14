@@ -55,8 +55,8 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Book Supports</h6>
           <a class="collapse-item" data-id="Motorcycle" href="/operator/motorcycle">Motorcycle</a>
-          <a class="collapse-item" href="/operator/motorcycle-brand">Motorcycle Brand</a>
-          <a class="collapse-item" href="/operator/motorcycle-type">Motorcycle Type</a>
+          <a class="collapse-item" href="/operator/motorcyclebrand">Motorcycle Brand</a>
+          <a class="collapse-item" href="/operator/motorcycletype">Motorcycle Type</a>
           {{-- <div class="collapse-divider"></div>
           <h6 class="collapse-header">Other Pages:</h6>
           <a class="collapse-item" href="#">404 Page</a>

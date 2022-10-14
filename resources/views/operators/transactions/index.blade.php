@@ -29,8 +29,7 @@
           <thead>
             <tr>
               <th class="text-center">ID</th>
-              <th class="text-center">User ID</th>
-              <th class="text-center">Motorcycle ID</th>
+              <th class="text-center">Customer Name</th>
               <th class="text-center">Start Date</th>
               <th class="text-center">End Date</th>
               <th class="text-center">Status</th>
@@ -41,19 +40,24 @@
             @foreach($tables as $row)
             <tr>
               <td class="text-center">{{ $row->txid }}</td>
-              <td class="text-center">{{ $row->user_customer_id }}</td>
-              <td class="text-center">{{ $row->motorcycle_id }}</td>
+              <td class="text-center">{{ $row->user_customer->name }}</td>
               <td class="text-center">{{ $row->start_at }}</td>
               <td class="text-center">{{ $row->end_at }}</td>
-              <td class="text-center">{{ $row->status }}</td>
+              <td class="text-center">
+                <select name="status" onchange="status_updat(this.options[this.selectedIndex].value, '{{ $row->txid }}')" id="status" class="form-control rad-6 fs-normal">
+                  <option value="unpaid" {{ ($row->status == 'unpaid') ? 'selected' : '' }}>Unpaid</option>
+                  <option value="paid" {{ ($row->status == 'paid') ? 'selected' : '' }}>Paid</option>
+                  <option value="processing" {{ ($row->status == 'processing') ? 'selected' : '' }}>Processing</option>
+                </select>
+              </td>
               <td class="text-center">
                 <form action="/operator/transaction/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
                   @csrf
                   @method('DELETE')
 
-                  <a href="/operator/transaction/{{ $row->id }}/edit" data-id="authorEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
+                  <a href="/operator/transaction-show/{{ $row->txid }}" data-id="authorEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
                     <span class="fa fa-fw fa-syringe mx-1"></span>
-                    Edit
+                    Show
                   </a>
 
                   <button type="submit" data-id="authorDelete{{ $row->id }}" class="btn fs-small btn-danger">
@@ -71,5 +75,20 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+
+  function status_updat(value, txid) {
+    $.ajax({
+      url:'/operator/transaction-update/',
+      data: { 'status':value, 'id':txid },
+      success:function(msg){
+          // alert("success");
+      }
+    });
+  };
+</script>
 <!-- /.container-fluid -->
 @endsection
+
+

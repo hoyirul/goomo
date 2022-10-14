@@ -44,10 +44,10 @@ class MotorcycleTypeController extends Controller
         ]);
 
         MotorcycleType::create([
-            'name' => $request->name
+            'type_name' => $request->name
         ]);
         
-        return redirect('/u/author')->with('success', "Data berhasil ditambahkan");
+        return redirect('/operator/motorcycletype')->with('success', "Data berhasil ditambahkan");
     }
 
     /**
@@ -72,8 +72,8 @@ class MotorcycleTypeController extends Controller
     public function edit($id)
     {
         $title = 'Motorcycle Types';
-        $tables = MotorcycleType::where('id', $id)->first();
-        return view('operators.motorcycletypes.edit', compact('title', 'tables'));
+        $data = MotorcycleType::where('id', $id)->first();
+        return view('operators.motorcycletypes.edit', compact('title', 'data'));
     }
 
     /**
@@ -90,10 +90,10 @@ class MotorcycleTypeController extends Controller
         ]);
 
         MotorcycleType::where('id', $id)->update([
-            'name' => $request->name
+            'type_name' => $request->name
         ]);
         
-        return redirect('/u/author')->with('success', "Data berhasil diubah");
+        return redirect('/operator/motorcycletype')->with('success', "Data berhasil diubah");
     }
 
     /**
@@ -105,6 +105,6 @@ class MotorcycleTypeController extends Controller
     public function destroy($id)
     {
         MotorcycleType::where('id', $id)->delete();
-        return redirect('/u/author')->with('success', "Data berhasil dihapus");
+        return redirect('/operator/motorcycletype')->with('success', "Data berhasil dihapus");
     }
 }

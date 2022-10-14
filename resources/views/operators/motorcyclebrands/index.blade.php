@@ -29,26 +29,21 @@
         <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th class="text-center">ID User</th>
+              <th class="text-center">No ID</th>
               <th>Nama</th>
-              <th class="text-center">Gender</th>
-              <th class="text-center">Phone Number</th>
-              <th class="text-center">Action/th>
             </tr>
           </thead>
           <tbody>
             @foreach($tables as $row)
             <tr>
-              <td class="text-center">{{ $row->user_id }}</td>
-              <td>{{ $row->name }}</td>
-              <td class="text-center">{{ $row->gender }}</td>
-              <td class="text-center">{{ $row->phone }}</td>
+              <td class="text-center">{{ $row->id }}</td>
+              <td>{{ $row->brand_name }}</td>
               <td class="text-center">
-                <form action="/u/author/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
+                <form action="/operator/motorcycle/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
                   @csrf
                   @method('DELETE')
 
-                  <a href="/u/author/{{ $row->id }}/edit" data-id="authorEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
+                  <a href="/operator/motorcyclebrand-edit/{{ $row->id }}" data-id="authorEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
                     <span class="fa fa-fw fa-syringe mx-1"></span>
                     Edit
                   </a>

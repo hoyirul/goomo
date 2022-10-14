@@ -45,7 +45,7 @@ class MotorcycleBrandsController extends Controller
         ]);
 
         MotorcycleBrand::create([
-            'name' => $request->name
+            'brand_name' => $request->name
         ]);
         
         return redirect('/operator/motorcyclebrand')->with('success', "Data berhasil ditambahkan");
@@ -73,8 +73,8 @@ class MotorcycleBrandsController extends Controller
     public function edit($id)
     {
         $title = 'Motorcycle Brand';
-        $tables = MotorcycleBrand::where('id', $id)->first();
-        return view('operators.motorcyclebrands.edit', compact('title', 'tables'));
+        $data= MotorcycleBrand::where('id', $id)->first();
+        return view('operators.motorcyclebrands.edit', compact('title', 'data'));
     }
 
     /**
@@ -91,7 +91,7 @@ class MotorcycleBrandsController extends Controller
         ]);
 
         MotorcycleBrand::where('id', $id)->update([
-            'name' => $request->name
+            'brand_name' => $request->name
         ]);
         
         return redirect('/operator/motorcyclebrand')->with('success', "Data berhasil diubah");

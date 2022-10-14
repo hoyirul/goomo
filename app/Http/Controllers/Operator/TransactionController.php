@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Transaction;
+use DateTime;
 
 class TransactionController extends Controller
 {
@@ -60,8 +61,12 @@ class TransactionController extends Controller
     public function show($id)
     {
         $title = 'Transaction';
-        $tables = Transaction::where('id', $id)->first();
-        return view('operators.transactions.show', compact('title', 'tables'));
+        $tables = Transaction::where('txid', $id)->first();
+
+        $start_at = new DateTime($tables->start_at);
+        $end_at = new DateTime($tables->end_at);
+        $days = $end_at->diff($start_at);
+        return view('operators.transactions.show', compact('title', 'tables', 'days'));
     }
 
     /**
@@ -73,7 +78,7 @@ class TransactionController extends Controller
     public function edit($id)
     {
         $title = 'Transaction';
-        $tables = Transaction::where('id', $id)->first();
+        $tables = Transaction::where('txid', $id)->first();
         return view('operators.transactions.edit', compact('title', 'tables'));
     }
 
@@ -84,14 +89,12 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $request->validate([
-            'name' => 'required'
-        ]);
+        
 
-        Transaction::where('id', $id)->update([
-            'name' => $request->name
+        Transaction::where('txid', $request->id)->update([
+            'status' => $request->status
         ]);
         
         return redirect('/operator/transaction')->with('success', "Data berhasil diubah");

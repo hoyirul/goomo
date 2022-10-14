@@ -18,7 +18,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $title = 'Customer Types';
+        $title = 'Customer';
         $tables = UserCustomer::all();
         return view('operators.customers.index', compact('tables', 'title'));
     }
@@ -30,7 +30,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $title = 'Customer Types';
+        $title = 'Customer ';
         return view('operators.customers.create', compact('title'));
     }
 
@@ -61,7 +61,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        $title = 'Customer Types';
+        $title = 'Customer';
         $tables = UserCustomer::where('id', $id)->first();
         $user = User::all();
         return view('operators.customers.show', compact('title', 'tables', 'users'));
@@ -75,7 +75,7 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $title = 'Customer Types';
+        $title = 'Customer';
         $data = UserCustomer::where('id', $id)->first();
         return view('operators.customers.edit', compact('title', 'data'));
     }

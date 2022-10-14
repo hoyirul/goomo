@@ -84,14 +84,11 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $request->validate([
-            'name' => 'required'
-        ]);
 
-        Payment::where('id', $id)->update([
-            'name' => $request->name
+        Payment::where('id',$request->id)->update([
+            'status' => $request->status
         ]);
         
         return redirect('/operator/payment')->with('success', "Data berhasil diubah");

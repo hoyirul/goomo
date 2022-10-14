@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('operators.layouts.main')
 
 @section('content')
 <!-- Begin Page Content -->
@@ -12,7 +12,7 @@
       <p class="mb-4">Hati-hati dalam input data. Beberapa data tidak dapat diubah setelah diinput!.</p>
     </div>
     <div class="col-md-6 d-flex justify-content-end">
-      <a href="/u/author" class="btn btn-primary mx-2 py-2 shadow-sm fs-normal align-self-center px-3 mt-n3">
+      <a href="/operator/motorcycletype" class="btn btn-primary mx-2 py-2 shadow-sm fs-normal align-self-center px-3 mt-n3">
          <span class="fas fa-arrow-left"></span> Kembali</a>
     </div>
   </div>
@@ -34,13 +34,15 @@
          <h6 class="m-0 font-weight-bold color-primary">Data {{ $title }}</h6>
       </div>
       <div class="card-body container-fluid">
-         <form method="post" action="/u/author/{{ $authors->id }}">
+        <form method="post" action="/operator/motorcycletype-update/{{ $data->id }}">
           @method('PUT')
           @csrf
-          <div class="form-group">
-            <label for="name">Nama Author</label>
-            <input type="text" data-id="inputEditNameAuthor" placeholder="ex: Ahmad Dahlan" class="form-control fs-normal form-spacer-20x15 @error('name') is-invalid @enderror" id="name" name="name" data-toggle="tooltip" data-placement="right" title="name Lengkap Bayi" value="{{ $authors->name }}" autofocus>
-            @error('name')<div class="invalid-feedback ml-1">Bidang ini wajib diisi</div>@enderror
+          <div class="col-md-6">
+            <label for="name" class="fs-normal mb-1">Type Name : </label>
+            <input type="text" name="name" class="form-control rad-6 fs-normal @error('name') is-invalid @enderror" placeholder="Full Name" value="{{ $data->type_name }}">
+            @error('name')
+              <div class="invalid-feedback ml-1">{{ $message }}</div>
+            @enderror
           </div>
          
           <button type="submit" data-id="btnUpdateAuthor" class="btn btn-primary font-medium float-right py-2 px-5">Update</button>
