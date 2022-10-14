@@ -60,7 +60,7 @@
             </div>
   
             <div class="mb-3 row">
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <label for="motorcycle_brand_id" class="fs-normal mb-1">Brand : </label>
                 <select id="motorcycle_brand_id" name="motorcycle_brand_id" placeholder="Owner" class="form-control-select fs-normal form-spacer-10x8 @error('motorcycle_brand_id') is-invalid @enderror" data-toggle="tooltip" data-placement="right">
                 @foreach ($brands as $brand) 
@@ -71,7 +71,7 @@
                   <div class="invalid-feedback ml-1">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <label for="motorcycle_type_id" class="fs-normal mb-1">Type : </label>
                 <select id="motorcycle_type_id" name="motorcycle_type_id" placeholder="Owner" class="form-control-select fs-normal form-spacer-10x8 @error('motorcycle_type_id') is-invalid @enderror" data-toggle="tooltip" data-placement="right">
                 @foreach ($types as $type)
@@ -82,14 +82,14 @@
                   <div class="invalid-feedback ml-1">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <label for="production_year" class="fs-normal mb-1">Publish Date : </label>
                 <input type="text" name="production_year"  class="form-control rad-6 fs-normal @error('production_year') is-invalid @enderror" placeholder="production year" value="{{ $tables->production_year }}">
                 @error('production_year')
                   <div class="invalid-feedback ml-1">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <label for="police_number" class="fs-normal mb-1">PN : </label>
                 <input type="text" name="police_number"  class="form-control rad-6 fs-normal @error('police_number') is-invalid @enderror" placeholder="Police Number" value="{{ $tables->police_number }}">
                 @error('police_number')
@@ -121,16 +121,19 @@
               </div>
             </div>
 
-            <div class="col-md-6">
-              <label for="status" class="fs-normal mb-1 @error('status') is-invalid @enderror"> Status : </label>
-              <select name="status" id="status" class="form-control rad-6 fs-normal">
-                <option value="inactive" {{ ($tables->status == 'inactive') ? 'selected' : '' }}>Inactive</option>
-                <option value="active" {{ ($tables->status == 'active') ? 'selected' : '' }}>Active</option>
-              </select>
-              @error('status')
-                <div class="invalid-feedback ml-1">{{ $message }}</div>
-              @enderror
+            <div class="mb-3 row">
+              <div class="col-md-3">
+                <label for="status" class="fs-normal mb-1 @error('status') is-invalid @enderror"> Status : </label>
+                <select name="status" id="status" class="form-control rad-6 fs-normal">
+                  <option value="inactive" {{ ($tables->status == 'inactive') ? 'selected' : '' }}>Inactive</option>
+                  <option value="active" {{ ($tables->status == 'active') ? 'selected' : '' }}>Active</option>
+                </select>
+                @error('status')
+                  <div class="invalid-feedback ml-1">{{ $message }}</div>
+                @enderror
+              </div>
             </div>
+            
          
           <button type="submit" data-id="btnUpdateAuthor" class="btn btn-primary font-medium float-right py-2 px-5">Update</button>
          </form>

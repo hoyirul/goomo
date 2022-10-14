@@ -44,7 +44,7 @@
               <td class="text-center">{{ $row->start_at }}</td>
               <td class="text-center">{{ $row->end_at }}</td>
               <td class="text-center">
-                <select name="status" onchange="status_updat(this.options[this.selectedIndex].value, '{{ $row->txid }}')" id="status" class="form-control rad-6 fs-normal">
+                <select disabled name="status" onchange="status_updat(this.options[this.selectedIndex].value, '{{ $row->txid }}')" id="status" class="form-control rad-6 fs-normal">
                   <option value="unpaid" {{ ($row->status == 'unpaid') ? 'selected' : '' }}>Unpaid</option>
                   <option value="paid" {{ ($row->status == 'paid') ? 'selected' : '' }}>Paid</option>
                   <option value="processing" {{ ($row->status == 'processing') ? 'selected' : '' }}>Processing</option>

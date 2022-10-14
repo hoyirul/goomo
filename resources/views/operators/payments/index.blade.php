@@ -90,7 +90,7 @@
       url:'/operator/transaction-update',
       data: { 'status':value, 'id':txid },
       success:function(msg){
-          alert("success");
+          // alert("success");
       }
     });
   };
