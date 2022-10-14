@@ -44,9 +44,13 @@ Route::middleware(['auth', 'isOperator'])->group(function(){
         });
         Route::controller(OwnerControllerOperators::class)->group(function() {
             Route::get('/owner', 'index');
+            Route::get('/owner-edit/{id}', 'edit');
+            Route::put('/owner-update/{id}', 'update');
         });
         Route::controller(AdminControllerOperators::class)->group(function() {
             Route::get('/admin', 'index');
+            Route::get('/admin-edit/{id}','edit');
+            Route::put('/admin-update/{id}','update');
         });
         Route::controller(CustomerControllerOperators::class)->group(function() {
             Route::get('/customer', 'index');

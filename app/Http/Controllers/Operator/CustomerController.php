@@ -89,6 +89,9 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        // dd($request->all());
+
         $tables = UserCustomer::where('id', $id)->first();
 
         $request->validate([

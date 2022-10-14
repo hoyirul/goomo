@@ -65,9 +65,9 @@
             <div class="col-md-6">
               <label for="gender" class="fs-normal mb-1 @error('gender') is-invalid @enderror">Gender : </label>
               <select name="gender" id="gender" class="form-control rad-6 fs-normal">
-                <option value="L" {{ ($data->gender == 'male') ? 'selected' : '' }}>Laki-laki</option>
-                <option value="P" {{ ($data->gender == 'female') ? 'selected' : '' }}>Perempuan</option>
-                <option value="C" {{ ($data->gender == 'hidden') ? 'selected' : '' }}>Hidden</option>
+                <option value="male" {{ ($data->gender == 'male') ? 'selected' : '' }}>Laki-laki</option>
+                <option value="female" {{ ($data->gender == 'female') ? 'selected' : '' }}>Perempuan</option>
+                <option value="hidden" {{ ($data->gender == 'hidden') ? 'selected' : '' }}>Hidden</option>
               </select>
               @error('gender')
                 <div class="invalid-feedback ml-1">{{ $message }}</div>
