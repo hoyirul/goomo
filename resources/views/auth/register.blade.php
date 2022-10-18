@@ -17,16 +17,6 @@
                     @csrf
 
                     <div class="form-floating mb-3 fs-normal">
-                      <label for="name">Name</label>
-                      <input id="name" type="text" class="form-control form-spacer-25x20 rad-10 fs-normal @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Name">
-                      @error('name')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                    </div>
-
-                    <div class="form-floating mb-3 fs-normal">
                       <label for="email">Email address</label>
                       <input id="email" type="email" class="form-control form-spacer-25x20 rad-10 fs-normal @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
                       @error('email')
@@ -35,6 +25,20 @@
                           </span>
                       @enderror
                     </div>
+
+                    <div class="form-floating mb-3 fs-normal">
+                      <label for="role_id">Role</label>
+                      <select name="role_id" id="role_id" class="form-control rad-10 @error('role_id') is-invalid @enderror">
+                        <option value="3">Customer (Penyewa Motor)</option>
+                        <option value="4">Owner (Pemilik Motor)</option>
+                      </select>
+                      @error('role_id')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                      @enderror
+                    </div>
+
                     <div class="form-floating mb-3 fs-normal">
                       <label for="password">Password</label>
                       <input id="password" type="password" class="form-control rad-10 form-spacer-25x20 fs-normal @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">

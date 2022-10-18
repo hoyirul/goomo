@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="Bayu Fajariyanto">
   
-  <title>BookStore | 2022 </title>
+  <title>Goomo | 2022 </title>
 
   
   <!-- Custom fonts for this template-->
