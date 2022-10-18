@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Operator\MotorcycleTypeController;
 use App\Http\Controllers\Pages\HomeController as HomeControllerPages;
 use App\Http\Controllers\Pages\AddressController as AddressControllerPages;
@@ -34,6 +35,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeControllerPages::class, 'index']);
 Route::get('/motorcycle/{id}/show', [HomeControllerPages::class, 'show']);
+
+Route::get('/v2/add_user', [HomeController::class, 'add']);
 
 Auth::routes();
 // Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
