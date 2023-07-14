@@ -27,7 +27,7 @@
       {{session('danger')}}
     </div>
   @endif
-  
+
   <!-- DataTales Example -->
   <div class="card border-0 shadow mb-4">
     <div class="card-header bg-white py-3">
@@ -121,7 +121,7 @@
           <div class="mb-3">
             <button type="submit" class="btn btn-primary fs-normal px-5 float-end py-2 rad-6">Update</button>
           </div>
-            
+
       </form>
     </div>
   </div>

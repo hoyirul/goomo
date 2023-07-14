@@ -86,9 +86,9 @@ Route::middleware(['auth', 'isOperator'])->group(function(){
             Route::get('/payment-show/{id}', 'show');
             Route::get('/payment-update', 'update');
         });
-        // Route::controller(Dasb)  
+        // Route::controller(Dasb)
         Route::resource('motorcycletype', MotorcycleTypeController::class);
- 
+
     });
 });
 
@@ -98,13 +98,13 @@ Route::middleware('auth')->group(function() {
             Route::get('/dashboard', 'index');
             Route::get('/update-dashboard', 'update');
         });
-        
+
         Route::controller(SettingControllerPages::class)->group(function() {
             Route::get('/change_password', 'change_password');
             Route::put('/update_password', 'update_password');
             Route::put('/update_profile', 'update_profile');
         });
-        
+
         Route::controller(TransactionControllerPages::class)->group(function() {
             Route::get('/transaction', 'index');
             Route::post('/transaction', 'store');
